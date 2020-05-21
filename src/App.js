@@ -60,7 +60,7 @@ const App = () => (
             <IonIcon icon={newspaperOutline} />
             <IonLabel>Newsy</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="news" href="/trending">
+          <IonTabButton tab="trending" href="/trending">
             <IonIcon icon={trendingUpOutline} />
             <IonLabel>Trending</IonLabel>
           </IonTabButton>

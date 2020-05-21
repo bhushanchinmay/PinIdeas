@@ -1,14 +1,15 @@
 import React from "react";
-import { IonPage, IonHeader, IonToolbar, IonTitle } from "@ionic/react";
+import { IonPage, IonContent } from "@ionic/react";
+import SmallHeader from "../../components/Headers/SmallHeader";
+import LargeHeader from "../../components/Headers/LargeHeader";
 
 const News = () => {
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>News</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <SmallHeader title="Newsy" />
+      <IonContent fullscreen>
+        <LargeHeader title="Newsy" />
+      </IonContent>
     </IonPage>
   );
 };
