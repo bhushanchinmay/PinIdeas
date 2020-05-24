@@ -2,12 +2,12 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import {
   IonApp,
-  IonRouterOutlet,
-  IonTabs,
-  IonTabBar,
-  IonTabButton,
   IonIcon,
   IonLabel,
+  IonRouterOutlet,
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import {
@@ -18,13 +18,14 @@ import {
   trendingUpOutline,
 } from "ionicons/icons";
 import News from "./pages/Tabs/News";
-import Profile from "./pages/Tabs/Profile";
-import Search from "./pages/Tabs/Search";
-import Submit from "./pages/Tabs/Submit";
 import Trending from "./pages/Tabs/Trending";
+import Submit from "./pages/Tabs/Submit";
+import Search from "./pages/Tabs/Search";
+import Profile from "./pages/Tabs/Profile";
 import EditProfile from "./pages/Auth/EditProfile";
-import SignUp from "./pages/Auth/Signup";
+import Link from "./pages/Link";
 import Login from "./pages/Auth/Login";
+import Signup from "./pages/Auth/Signup";
 import Forgot from "./pages/Auth/Forgot";
 import useAuth from "./hooks/useAuth";
 import UserContext from "./contexts/userContext";
@@ -67,9 +68,10 @@ const App = () => {
               <Route path="/search" component={Search} />
               <Route path="/profile" component={Profile} />
               <Route path="/edit-profile" component={EditProfile} />
-              <Route path="/register" component={SignUp} />
+              <Route path="/register" component={Signup} />
               <Route path="/login" component={Login} />
               <Route path="/forgot" component={Forgot} />
+              <Route path="/link/:linkId" component={Link} />
               <Route component={() => <Redirect to="/news" />} />
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
@@ -100,5 +102,4 @@ const App = () => {
     </IonApp>
   );
 };
-
 export default App;

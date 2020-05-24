@@ -1,19 +1,28 @@
 import React from "react";
 import {
   IonHeader,
-  IonToolbar,
-  IonButton,
-  IonBackButton,
   IonTitle,
+  IonToolbar,
+  IonButtons,
+  IonBackButton,
+  IonIcon,
+  IonButton,
 } from "@ionic/react";
 
-const NavHeader = ({ title }) => {
+const NavHeader = ({ title, option, icon, action }) => {
   return (
     <IonHeader>
       <IonToolbar color="primary">
-        <IonButton slot="start">
-          <IonBackButton defaultHref="/"></IonBackButton>
-        </IonButton>
+        <IonButtons slot="start">
+          <IonBackButton defaultHref="/" />
+        </IonButtons>
+        {option && (
+          <IonButtons slot="primary">
+            <IonButton onClick={action}>
+              <IonIcon slot="icon-only" icon={icon} />
+            </IonButton>
+          </IonButtons>
+        )}
         <IonTitle>{title}</IonTitle>
       </IonToolbar>
     </IonHeader>
