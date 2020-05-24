@@ -19,7 +19,6 @@ import { toast } from "../../helpers/toast";
 import firebase from "../../firebase";
 import UserContext from "../../contexts/userContext";
 import { personCircleOutline, mailOutline } from "ionicons/icons";
-import { log } from "util";
 
 const Profile = (props) => {
   const { user } = React.useContext(UserContext);
