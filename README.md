@@ -8,3 +8,6 @@
 # Course:
   Learn React by Building a Hacker News Clone
   https://www.solidsail.com/courses/hacker-news/
+
+# Website for Web App:
+  https://newsy-606eb.web.app/
