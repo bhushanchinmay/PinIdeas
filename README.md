@@ -1,13 +1,18 @@
-# Newsy
-  Building a Hacker News Clone : News app just like Hacker News with React, Ionic, and Firebase.
-  It's a social news app (Web App + iOS App + Android App + Desktop App) focusing on computer science related news etc. 
+### Welcome to Newsy!
+This project was made for personalized news application, it will help in keeping track of your daily news and other important links for you and your friends or any other who want to collaborate to the website, by creating an individual account on the application itself and publishing news and links. You can upvote and prioritize based on that. It is pretty nice and clean Web App with Minimalistic Design with additional support for **Dark Theme** for greater visualization.
 
-# Technologies Used:
-  React, Ionic and Firebase 
-  
-# Course:
-  Learn React by Building a Hacker News Clone
-  https://www.solidsail.com/courses/hacker-news/
+### Technologies Used
+React, Ionic and Firebase.
 
-# Website for Web App:
-  https://newsy-606eb.web.app/
+### Course
+This project has been made with the help of the course **[Learn React by Building a Hacker News Clone](https://www.solidsail.com/courses/hacker-news/)**
+
+### Inspiration
+This project was made to gain knowledge about the implementations of React, Ionic and Firebase that can help build an application for mobile, web, and desktop from a single codebase. This project also gave me a deep insight into the working of Hooks, Validators, Authentication and all others. Overall it was a great experience in creating the application, it also helped me in learning about code modularity and taught me about Git and GitHub thus helping me create this project.
+
+### About the Author
+(@bhushanchinmay)
+I am Software Engineer, Associate at Qualcomm Inc. I created various applications and tools using different languages such as Javascript, Python, C++ etc. I love creating stuff.
+
+### Support or Contact
+Having trouble with the Project? [Contact Me!](mailto:bhushan.chinmay@gmail.com) and I’ll help you sort it out.
