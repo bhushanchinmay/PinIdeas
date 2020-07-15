@@ -1,5 +1,5 @@
 ### Welcome to Newsy!
-This project was made for personalized news application, it will help in keeping track of your daily news and other important links for you and your friends or any other who want to collaborate to the website, by creating an individual account on the application itself and publishing news and links. You can upvote and prioritize based on that. It is pretty nice and clean Web App with Minimalistic Design with additional support for **Dark Theme** for greater visualization.
+This project was made as a personalized news application, it will help in keeping track of your daily news and other important links for you and your friends or any other who want to collaborate to the website, by creating an individual account on the application itself and publishing news and links. You can upvote and prioritize based on that. It is pretty nice and clean Web App with Minimalistic Design with additional support for **Dark Theme** for greater visualization.
 
 ### Technologies Used
 React, Ionic and Firebase.
