@@ -12,7 +12,7 @@ This project was made to gain knowledge about the implementations of React, Ioni
 
 ### About the Author
 (@bhushanchinmay)
-I am Software Engineer, Associate at Qualcomm Inc. I created various applications and tools using different languages such as Javascript, Python, C++ etc. I love creating stuff.
+I am Software Engineer, Associate at Qualcomm Inc. I have created various applications and tools using different languages such as Javascript, Python, C++ etc. I love creating stuff.
 
 ### Support or Contact
 Having trouble with the Project? [Contact Me!](mailto:bhushan.chinmay@gmail.com) and I’ll help you sort it out.
