@@ -7,9 +7,9 @@ import LargeHeader from "../../components/Header/LargeHeader";
 const News = (props) => {
   return (
     <IonPage>
-      <SmallHeader title="Newsy" />
+      <SmallHeader title="PinIdeas" />
       <IonContent>
-        <LargeHeader title="Newsy" />
+        <LargeHeader title="PinIdeas" />
         <LinkList location={props.location} />
       </IonContent>
     </IonPage>
