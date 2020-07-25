@@ -1,4 +1,4 @@
-# Welcome to [Newsy](https://newsy-606eb.web.app/)!:smiley:
+# Welcome to [PinIdeas](https://newsy-606eb.web.app/)!:smiley:
 
 This project was made as a personalized news application, where you and your friends, or anybody who wants to collaborate and share links, by creating an individual accounts on the application itself and publishing afterwards. You can upvote and prioritize your links. Its like having an extra helping hands:two_men_holding_hands: which keeps all your personalized news and links at one place.  Its interface is pretty nice and clean with Minimalistic Design having an additional support for **Dark Theme** for greater visualization:sunglasses:.
 
