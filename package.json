@@ -1,5 +1,5 @@
 {
-  "name": "Newsy",
+  "name": "PinIdeas",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -52,5 +52,5 @@
   "devDependencies": {
     "@capacitor/cli": "2.1.0"
   },
-  "description": "An Ionic project"
+  "description": "PinIdeas | Chinmay Bhushan"
 }
