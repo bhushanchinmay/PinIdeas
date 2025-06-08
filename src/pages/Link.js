@@ -11,14 +11,12 @@ import { closeCircleOutline } from "ionicons/icons";
 
 import firebase from "../firebase";
 
-import { Plugins } from "@capacitor/core";
+import { Browser } from "@capacitor/browser";
 import UserContext from "../contexts/userContext";
 import NavHeader from "../components/Header/NavHeader";
 import LinkItem from "../components/Link/LinkItem";
 import LinkComment from "../components/Link/LinkComment";
 import CommentModal from "../components/Link/CommentModal";
-
-const { Browser } = Plugins;
 
 const Link = (props) => {
   const { user } = React.useContext(UserContext);
