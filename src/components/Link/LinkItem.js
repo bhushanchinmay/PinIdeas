@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   IonItem,
   IonLabel,
@@ -8,6 +8,7 @@ import {
   IonCard,
   IonCardContent,
   IonList,
+  IonButton,
 } from "@ionic/react";
 import {
   chevronUpCircleOutline,
@@ -15,11 +16,33 @@ import {
   linkOutline,
   personCircleOutline,
   timeOutline,
+  trashOutline,
 } from "ionicons/icons";
 import { getHostName } from "../../helpers/domain.js";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import UserContext from "../../contexts/userContext";
+import firebase from "../../firebase/firebase";
 
 const LinkItem = ({ link, index, showCount, url, browser }) => {
+  const { user } = useContext(UserContext);
+
+  async function handleDeletePost(e) {
+    e.stopPropagation(); // Prevent card click
+    if (window.confirm("Are you sure you want to delete this post?")) {
+      try {
+        const linkId = link.id;
+        const linkRef = firebase.db.collection("links").doc(linkId);
+        await linkRef.delete();
+        console.log("Post deleted successfully:", linkId);
+        // Optionally, you might want to call a function passed via props
+        // to update the UI by removing the item from the list,
+        // e.g., onDeleteSuccess(linkId);
+      } catch (error) {
+        console.error("Error deleting post:", error);
+      }
+    }
+  }
+
   return (
     <IonCard routerLink={url} onClick={browser} button>
       <IonCardContent class="ion-no-padding">
@@ -124,6 +147,18 @@ const LinkItem = ({ link, index, showCount, url, browser }) => {
                     >
                       {link.comments.length} comments
                     </IonText>
+                  </>
+                )}
+                {user && user.uid === link.postedBy.id && (
+                  <>
+                    {" | "}
+                    <IonButton
+                      size="small"
+                      color="danger"
+                      onClick={handleDeletePost}
+                    >
+                      <IonIcon slot="icon-only" icon={trashOutline} />
+                    </IonButton>
                   </>
                 )}{" "}
               </p>
