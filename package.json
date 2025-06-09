@@ -25,7 +25,7 @@
     "react-dom": "^19.1.0",
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4",
-    "react-scripts": "5.0.1"
+    "typescript": "3.8.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -52,7 +52,8 @@
   "devDependencies": {
     "@babel/plugin-transform-private-property-in-object": "^7.27.1",
     "@capacitor/cli": "7.3.0",
-    "typescript": "^5.8.3"
+    "vite": "^5.3.1",
+    "@vitejs/plugin-react": "^4.3.1"
   },
   "description": "PinIdeas | Chinmay Bhushan"
 }
