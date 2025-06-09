@@ -1,37 +1,44 @@
-import app from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
+import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  sendPasswordResetEmail,
+  updateProfile,
+} from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 import firebaseConfig from "./config";
 
 class Firebase {
   constructor() {
-    app.initializeApp(firebaseConfig);
-    this.app = app;
-    this.auth = app.auth();
-    this.db = app.firestore();
+    this.app = initializeApp(firebaseConfig);
+    this.auth = getAuth(this.app);
+    this.db = getFirestore(this.app);
   }
 
   async register(name, email, password) {
-    const newUser = await this.auth.createUserWithEmailAndPassword(
+    const newUserCredential = await createUserWithEmailAndPassword(
+      this.auth,
       email,
       password
     );
-    return newUser.user.updateProfile({
+    await updateProfile(newUserCredential.user, {
       displayName: name,
     });
   }
 
   login(email, password) {
-    return this.auth.signInWithEmailAndPassword(email, password);
+    return signInWithEmailAndPassword(this.auth, email, password);
   }
 
   logout() {
-    return this.auth.signOut();
+    return signOut(this.auth);
   }
 
   resetPassword(email) {
-    return this.auth.sendPasswordResetEmail(email);
+    return sendPasswordResetEmail(this.auth, email);
   }
 }
 

@@ -12,6 +12,7 @@ import {
 import useForm from "../../hooks/useForm";
 import validateCreateLink from "../../validators/validateCreateLink";
 import firebase from "../../firebase";
+import { collection, addDoc } from "firebase/firestore";
 import UserContext from "../../contexts/userContext";
 import SmallHeader from "../../components/Header/SmallHeader";
 import LargeHeader from "../../components/Header/LargeHeader";
@@ -46,7 +47,8 @@ const Submit = (props) => {
         comments: [],
         created: Date.now(),
       };
-      firebase.db.collection("links").add(newLink);
+      const linksRef = collection(firebase.db, "links");
+      addDoc(linksRef, newLink);
       props.history.push("/");
     }
   }

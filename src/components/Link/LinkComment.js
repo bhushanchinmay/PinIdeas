@@ -11,6 +11,7 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import UserContext from "../../contexts/userContext";
 import CommentModal from "./CommentModal";
 import firebase from "../../firebase";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 const LinkComment = ({ comment, link, setLink }) => {
   const { user } = React.useContext(UserContext);
@@ -23,10 +24,10 @@ const LinkComment = ({ comment, link, setLink }) => {
   }
 
   function handleEditComment(commentText) {
-    const linkRef = firebase.db.collection("links").doc(link.id);
-    linkRef.get().then((doc) => {
-      if (doc.exists) {
-        const previousComments = doc.data().comments;
+    const linkRef = doc(firebase.db, "links", link.id);
+    getDoc(linkRef).then((docSnap) => {
+      if (docSnap.exists()) {
+        const previousComments = docSnap.data().comments;
         const newComment = {
           postedBy: { id: user.uid, name: user.displayName },
           created: Date.now(),
@@ -35,7 +36,7 @@ const LinkComment = ({ comment, link, setLink }) => {
         const updatedComments = previousComments.map((item) =>
           item.created === comment.created ? newComment : item
         );
-        linkRef.update({ comments: updatedComments });
+        updateDoc(linkRef, { comments: updatedComments });
         setLink((prevState) => ({
           ...prevState,
           comments: updatedComments,
@@ -46,14 +47,14 @@ const LinkComment = ({ comment, link, setLink }) => {
   }
 
   function handleDeleteComment() {
-    const linkRef = firebase.db.collection("links").doc(link.id);
-    linkRef.get().then((doc) => {
-      if (doc.exists) {
-        const previousComments = doc.data().comments;
+    const linkRef = doc(firebase.db, "links", link.id);
+    getDoc(linkRef).then((docSnap) => {
+      if (docSnap.exists()) {
+        const previousComments = docSnap.data().comments;
         const updatedComments = previousComments.filter(
           (item) => item.created !== comment.created
         );
-        linkRef.update({ comments: updatedComments });
+        updateDoc(linkRef, { comments: updatedComments });
         setLink((prevState) => ({
           ...prevState,
           comments: updatedComments,

@@ -1,6 +1,7 @@
 import React from "react";
 import { IonContent, IonPage, IonSearchbar } from "@ionic/react";
 import firebase from "../../firebase";
+import { collection, getDocs } from "firebase/firestore";
 import LinkItem from "../../components/Link/LinkItem";
 import LargeHeader from "../../components/Header/LargeHeader";
 import SmallHeader from "../../components/Header/SmallHeader";
@@ -21,15 +22,13 @@ const Search = () => {
   }, [filter]);
 
   function getInitialLinks() {
-    firebase.db
-      .collection("links")
-      .get()
-      .then((snapshot) => {
-        const links = snapshot.docs.map((doc) => {
-          return { id: doc.id, ...doc.data() };
-        });
-        setLinks(links);
+    const linksRef = collection(firebase.db, "links");
+    getDocs(linksRef).then((snapshot) => {
+      const links = snapshot.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() };
       });
+      setLinks(links);
+    });
   }
 
   function handleChange(evt) {
