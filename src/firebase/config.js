@@ -1,12 +1,12 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyBlZEezf-nMEaGChvlL-fwsQL54CiDRos4",
-    authDomain: "newsy-606eb.firebaseapp.com",
-    databaseURL: "https://newsy-606eb.firebaseio.com",
-    projectId: "newsy-606eb",
-    storageBucket: "newsy-606eb.appspot.com",
-    messagingSenderId: "548037126617",
-    appId: "1:548037126617:web:0a97fc663be21ecdbe91c8"
-  };
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+};
 
-  export default firebaseConfig;
+export default firebaseConfig;
   
