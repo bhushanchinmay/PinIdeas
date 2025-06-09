@@ -17,16 +17,21 @@ import {
   createOutline,
   trendingUpOutline,
 } from "ionicons/icons";
-import News from "./pages/Tabs/News";
-import Trending from "./pages/Tabs/Trending";
-import Submit from "./pages/Tabs/Submit";
-import Search from "./pages/Tabs/Search";
-import Profile from "./pages/Tabs/Profile";
-import EditProfile from "./pages/Auth/EditProfile";
-import Link from "./pages/Link";
-import Login from "./pages/Auth/Login";
-import Signup from "./pages/Auth/Signup";
-import Forgot from "./pages/Auth/Forgot";
+import React, { lazy, Suspense } from "react"; // Added lazy and Suspense
+import { IonSpinner } from "@ionic/react"; // Optional: for a nicer loader
+
+// Lazy load page components
+const News = lazy(() => import("./pages/Tabs/News"));
+const Trending = lazy(() => import("./pages/Tabs/Trending"));
+const Submit = lazy(() => import("./pages/Tabs/Submit"));
+const Search = lazy(() => import("./pages/Tabs/Search"));
+const Profile = lazy(() => import("./pages/Tabs/Profile"));
+const EditProfile = lazy(() => import("./pages/Auth/EditProfile"));
+const Link = lazy(() => import("./pages/Link"));
+const Login = lazy(() => import("./pages/Auth/Login"));
+const Signup = lazy(() => import("./pages/Auth/Signup"));
+const Forgot = lazy(() => import("./pages/Auth/Forgot"));
+
 import useAuth from "./hooks/useAuth";
 import UserContext from "./contexts/userContext";
 
@@ -56,24 +61,26 @@ const App = () => {
       <IonReactRouter>
         <UserContext.Provider value={{ user, setUser }}>
           <IonTabs>
-            <IonRouterOutlet>
-              <Route
-                path="/"
-                render={() => <Redirect to="/news" />}
-                exact={true}
-              />
-              <Route path="/news" component={News} />
-              <Route path="/trending" component={Trending} />
-              <Route path="/submit" component={Submit} />
-              <Route path="/search" component={Search} />
-              <Route path="/profile" component={Profile} />
-              <Route path="/edit-profile" component={EditProfile} />
-              <Route path="/register" component={Signup} />
-              <Route path="/login" component={Login} />
-              <Route path="/forgot" component={Forgot} />
-              <Route path="/link/:linkId" component={Link} />
-              <Route component={() => <Redirect to="/news" />} />
-            </IonRouterOutlet>
+            <Suspense fallback={<IonSpinner name="dots" />}>
+              <IonRouterOutlet>
+                <Route
+                  path="/"
+                  render={() => <Redirect to="/news" />}
+                  exact={true}
+                />
+                <Route path="/news" component={News} />
+                <Route path="/trending" component={Trending} />
+                <Route path="/submit" component={Submit} />
+                <Route path="/search" component={Search} />
+                <Route path="/profile" component={Profile} />
+                <Route path="/edit-profile" component={EditProfile} />
+                <Route path="/register" component={Signup} />
+                <Route path="/login" component={Login} />
+                <Route path="/forgot" component={Forgot} />
+                <Route path="/link/:linkId" component={Link} />
+                <Route component={() => <Redirect to="/news" />} />
+              </IonRouterOutlet>
+            </Suspense>
             <IonTabBar slot="bottom">
               <IonTabButton tab="news" href="/news">
                 <IonIcon icon={newspaperOutline} />

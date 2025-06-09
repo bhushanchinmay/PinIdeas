@@ -8,9 +8,8 @@ import {
   IonCol,
 } from "@ionic/react";
 import { closeCircleOutline } from "ionicons/icons";
-
 import firebase from "../firebase";
-
+import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { Browser } from "@capacitor/browser";
 import UserContext from "../contexts/userContext";
 import NavHeader from "../components/Header/NavHeader";
@@ -23,7 +22,7 @@ const Link = (props) => {
   const [link, setLink] = React.useState(null);
   const [showModal, setShowModal] = React.useState(false);
   const linkId = props.match.params.linkId;
-  const linkRef = firebase.db.collection("links").doc(linkId);
+  const linkRef = doc(firebase.db, "links", linkId);
 
   React.useEffect(() => {
     getLink();
@@ -31,8 +30,8 @@ const Link = (props) => {
   }, [linkId]);
 
   function getLink() {
-    linkRef.get().then((doc) => {
-      setLink({ ...doc.data(), id: doc.id });
+    getDoc(linkRef).then((docSnap) => {
+      setLink({ ...docSnap.data(), id: docSnap.id });
     });
   }
 
@@ -52,16 +51,16 @@ const Link = (props) => {
     if (!user) {
       props.history.push("/login");
     } else {
-      linkRef.get().then((doc) => {
-        if (doc.exists) {
-          const previousComments = doc.data().comments;
+      getDoc(linkRef).then((docSnap) => {
+        if (docSnap.exists()) {
+          const previousComments = docSnap.data().comments;
           const newComment = {
             postedBy: { id: user.uid, name: user.displayName },
             created: Date.now(),
             text: commentText,
           };
           const updatedComments = [...previousComments, newComment];
-          linkRef.update({ comments: updatedComments });
+          updateDoc(linkRef, { comments: updatedComments });
           setLink((prevState) => ({
             ...prevState,
             comments: updatedComments,
@@ -76,13 +75,13 @@ const Link = (props) => {
     if (!user) {
       props.history.push("/login");
     } else {
-      linkRef.get().then((doc) => {
-        if (doc.exists) {
-          const previousVotes = doc.data().votes;
+      getDoc(linkRef).then((docSnap) => {
+        if (docSnap.exists()) {
+          const previousVotes = docSnap.data().votes;
           const vote = { votedBy: { id: user.uid, name: user.displayName } };
           const updatedVotes = [...previousVotes, vote];
           const voteCount = updatedVotes.length;
-          linkRef.update({ votes: updatedVotes, voteCount });
+          updateDoc(linkRef, { votes: updatedVotes, voteCount });
           setLink((prevState) => ({
             ...prevState,
             votes: updatedVotes,
@@ -94,8 +93,7 @@ const Link = (props) => {
   }
 
   function handleDeleteLink() {
-    linkRef
-      .delete()
+    deleteDoc(linkRef)
       .then(() => {
         console.log(`Document with ID ${link.id} deleted`);
       })

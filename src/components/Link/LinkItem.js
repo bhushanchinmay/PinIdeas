@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, memo } from "react"; // Imported memo
 import {
   IonItem,
   IonLabel,
@@ -22,6 +22,7 @@ import { getHostName } from "../../helpers/domain.js";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import UserContext from "../../contexts/userContext";
 import firebase from "../../firebase/firebase";
+import { doc, deleteDoc } from "firebase/firestore";
 
 const LinkItem = ({ link, index, showCount, url, browser }) => {
   const { user } = useContext(UserContext);
@@ -31,8 +32,8 @@ const LinkItem = ({ link, index, showCount, url, browser }) => {
     if (window.confirm("Are you sure you want to delete this post?")) {
       try {
         const linkId = link.id;
-        const linkRef = firebase.db.collection("links").doc(linkId);
-        await linkRef.delete();
+        const linkRef = doc(firebase.db, "links", linkId);
+        await deleteDoc(linkRef);
         console.log("Post deleted successfully:", linkId);
         // Optionally, you might want to call a function passed via props
         // to update the UI by removing the item from the list,
@@ -170,4 +171,4 @@ const LinkItem = ({ link, index, showCount, url, browser }) => {
   );
 };
 
-export default LinkItem;
+export default memo(LinkItem); // Wrapped component with memo
