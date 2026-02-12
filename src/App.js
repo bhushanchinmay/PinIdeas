@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Redirect, Route } from "react-router-dom";
 import {
   IonApp,
@@ -17,7 +17,6 @@ import {
   createOutline,
   trendingUpOutline,
 } from "ionicons/icons";
-import React, { lazy, Suspense } from "react"; // Added lazy and Suspense
 import { IonSpinner } from "@ionic/react"; // Optional: for a nicer loader
 
 // Lazy load page components
@@ -60,8 +59,8 @@ const App = () => {
     <IonApp>
       <IonReactRouter>
         <UserContext.Provider value={{ user, setUser }}>
-          <IonTabs>
-            <Suspense fallback={<IonSpinner name="dots" />}>
+          <Suspense fallback={<IonSpinner name="dots" />}>
+            <IonTabs>
               <IonRouterOutlet>
                 <Route
                   path="/"
@@ -80,8 +79,7 @@ const App = () => {
                 <Route path="/link/:linkId" component={Link} />
                 <Route component={() => <Redirect to="/news" />} />
               </IonRouterOutlet>
-            </Suspense>
-            <IonTabBar slot="bottom">
+              <IonTabBar slot="bottom">
               <IonTabButton tab="news" href="/news">
                 <IonIcon icon={newspaperOutline} />
                 <IonLabel>PinIdeas</IonLabel>
@@ -104,6 +102,7 @@ const App = () => {
               </IonTabButton>
             </IonTabBar>
           </IonTabs>
+          </Suspense>
         </UserContext.Provider>
       </IonReactRouter>
     </IonApp>
