@@ -52,7 +52,7 @@
   "devDependencies": {
     "@babel/plugin-transform-private-property-in-object": "^7.27.1",
     "@capacitor/cli": "7.3.0",
-    "vite": "^5.3.1",
+    "vite": "^7.3.1",
     "@vitejs/plugin-react": "^4.3.1"
   },
   "description": "PinIdeas | Chinmay Bhushan"
