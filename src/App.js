@@ -8,6 +8,8 @@ import {
   IonTabBar,
   IonTabButton,
   IonTabs,
+  IonSpinner,
+  setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import {
@@ -17,7 +19,6 @@ import {
   createOutline,
   trendingUpOutline,
 } from "ionicons/icons";
-import { IonSpinner } from "@ionic/react"; // Optional: for a nicer loader
 
 // Lazy load page components
 const News = lazy(() => import("./pages/Tabs/News"));
@@ -52,6 +53,8 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+
+setupIonicReact();
 
 const App = () => {
   const [user, setUser] = useAuth();

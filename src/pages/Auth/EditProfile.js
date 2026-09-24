@@ -11,6 +11,13 @@ import {
   IonLoading,
 } from "@ionic/react";
 import firebase from "../../firebase";
+import {
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+  updateProfile,
+  updateEmail,
+  updatePassword,
+} from "firebase/auth";
 import useForm from "../../hooks/useForm";
 import validateEditProfile from "../../validators/validateEditProfile";
 import UserContext from "../../contexts/userContext";
@@ -35,26 +42,19 @@ const EditProfile = (props) => {
   const [busy, setBusy] = React.useState(false);
 
   async function reauthenticate(email, password) {
-    const credential = firebase.app.auth.EmailAuthProvider.credential(
-      email,
-      password
-    );
-    try {
-      await user.reauthenticateWithCredential(credential);
-      console.log("Reauthentication Successful");
-    } catch (err) {
-      console.error("Profile Update Error", err);
-      toast(err.message);
-    }
+    const credential = EmailAuthProvider.credential(email, password);
+    await reauthenticateWithCredential(user, credential);
   }
 
   async function updateProfileItems(name, email, password) {
-    await user.updateProfile({
+    await updateProfile(user, {
       displayName: name,
     });
-    await user.updateEmail(email);
+    if (email !== user.email) {
+      await updateEmail(user, email);
+    }
     if (password) {
-      await user.updatePassword(password);
+      await updatePassword(user, password);
     }
   }
 
@@ -95,7 +95,7 @@ const EditProfile = (props) => {
             name="name"
             type="text"
             value={values.name}
-            onIonChange={handleChange}
+            onIonInput={handleChange}
             required
           ></IonInput>
         </IonItem>
@@ -106,7 +106,7 @@ const EditProfile = (props) => {
             name="email"
             type="text"
             value={values.email}
-            onIonChange={handleChange}
+            onIonInput={handleChange}
             required
           ></IonInput>
         </IonItem>
@@ -117,7 +117,7 @@ const EditProfile = (props) => {
             name="newPassword"
             type="password"
             value={values.newPassword}
-            onIonChange={handleChange}
+            onIonInput={handleChange}
           ></IonInput>
         </IonItem>
 
@@ -127,7 +127,7 @@ const EditProfile = (props) => {
             name="currentPassword"
             type="password"
             value={values.currentPassword}
-            onIonChange={handleChange}
+            onIonInput={handleChange}
             required
           ></IonInput>
         </IonItem>
