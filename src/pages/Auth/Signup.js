@@ -31,6 +31,7 @@ const Signup = (props) => {
   const [busy, setBusy] = React.useState(false);
 
   async function authenticateUser() {
+    setBusy(true);
     const { name, email, password } = values;
     try {
       await firebase.register(name, email, password);
@@ -54,7 +55,7 @@ const Signup = (props) => {
             name="name"
             type="text"
             value={values.name}
-            onIonChange={handleChange}
+            onIonInput={handleChange}
             required
           ></IonInput>
         </IonItem>
@@ -64,7 +65,7 @@ const Signup = (props) => {
             name="email"
             type="text"
             value={values.email}
-            onIonChange={handleChange}
+            onIonInput={handleChange}
             required
           ></IonInput>
         </IonItem>
@@ -74,7 +75,7 @@ const Signup = (props) => {
             name="password"
             type="password"
             value={values.password}
-            onIonChange={handleChange}
+            onIonInput={handleChange}
             required
           ></IonInput>
         </IonItem>

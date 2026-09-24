@@ -53,7 +53,7 @@ const Forgot = () => {
             name="email"
             type="text"
             value={values.email}
-            onIonChange={handleChange}
+            onIonInput={handleChange}
             required
           ></IonInput>
         </IonItem>

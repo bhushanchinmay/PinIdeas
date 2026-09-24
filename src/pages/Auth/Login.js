@@ -56,7 +56,7 @@ const Login = (props) => {
             name="email"
             type="text"
             value={values.email}
-            onIonChange={handleChange}
+            onIonInput={handleChange}
             required
           ></IonInput>
         </IonItem>
@@ -66,7 +66,7 @@ const Login = (props) => {
             name="password"
             type="password"
             value={values.password}
-            onIonChange={handleChange}
+            onIonInput={handleChange}
             required
           ></IonInput>
         </IonItem>
@@ -83,9 +83,11 @@ const Login = (props) => {
             </IonButton>
           </IonCol>
         </IonRow>
-        <IonCol class="ion-text-center ion-padding-vertical">
-          <IonRouterLink routerLink={"/forgot"}>Forgot Password?</IonRouterLink>
-        </IonCol>
+        <IonRow>
+          <IonCol className="ion-text-center ion-padding-vertical">
+            <IonRouterLink routerLink={"/forgot"}>Forgot Password?</IonRouterLink>
+          </IonCol>
+        </IonRow>
       </IonContent>
     </IonPage>
   );

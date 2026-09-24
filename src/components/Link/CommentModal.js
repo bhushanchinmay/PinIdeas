@@ -41,7 +41,7 @@ const CommentModal = ({ isOpen, title, sendAction, closeAction, comment }) => {
           cols={25}
           placeholder="Your comment"
           value={commentText}
-          onIonChange={e => setCommentText(e.target.value)}
+          onIonInput={e => setCommentText(e.target.value)}
         />
       </IonContent>
     </IonModal>

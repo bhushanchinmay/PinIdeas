@@ -64,7 +64,7 @@ const Submit = (props) => {
             name="description"
             value={values.description}
             type="text"
-            onIonChange={handleChange}
+            onIonInput={handleChange}
             required
           ></IonInput>
         </IonItem>
@@ -75,7 +75,7 @@ const Submit = (props) => {
             name="url"
             type="url"
             value={values.url}
-            onIonChange={handleChange}
+            onIonInput={handleChange}
             required
           ></IonInput>
         </IonItem>

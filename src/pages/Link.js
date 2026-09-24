@@ -31,7 +31,7 @@ const Link = (props) => {
 
   function getLink() {
     getDoc(linkRef).then((docSnap) => {
-      setLink({ ...docSnap.data(), id: docSnap.id });
+      setLink(docSnap.exists() ? { ...docSnap.data(), id: docSnap.id } : null);
     });
   }
 
